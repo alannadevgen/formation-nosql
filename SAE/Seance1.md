@@ -4,7 +4,7 @@
 
 Nous disposons de la base de données suivante ClassicModel :
 
-ClassicModel--ER.png
+![ClassicModel ER](https://github.com/alannadevgen/resources-nosql/blob/main/SAE/img/ClassicModel-ER.png)
 
 
 ## Idée de la SAE
