@@ -21,3 +21,7 @@ Une fois sur la page des **Database access** cliquez sur **Add new database user
 
 > [!CAUTION]
 > Pensez à bien enregistrer le mot de passe dans un endroit sécurisé de votre ordinateur et ne pas le mettre sur un repo public GitHub.
+
+Une fois ceci fait vous aurez la vue suivante : 
+
+![User created](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/user-created.png)
