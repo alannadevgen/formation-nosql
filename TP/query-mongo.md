@@ -177,3 +177,47 @@ Notez le contenu des colonnes `address` et `grades`.
 import pandas as pd
 pd.DataFrame(list(db.collection_name.find(limit = 5)))
 ```
+
+### Exemples
+
+- Cours de NoSQL (uniquement les attributs `"name"` et `"surname"`)
+
+```python
+nosql_students = db.collection_name.find(
+    { "course": "NoSQL" },
+    { "student.name": 1, "student.surname": 1 }
+)
+pd.DataFrame(list(nosql_students))
+```
+
+- Idem sans l'identifiant interne
+
+```python
+nosql_students = db.collection_name.find(
+    { "course": "NoSQL" },
+    { "_id": 0, "student.name": 1, "student.surname": 1 }
+)
+pd.DataFrame(list(nosql_students))
+```
+
+- 5 meilleures notes de l'évaluation de NoSQL, supérieures à 15 (on affiche le nom et le prénom de l'étudiant)
+
+```python
+first_grades = db.collection_name.find(
+    { "course": "NoSQL", "grades.score": { "$gte":  15}},
+    { "_id": 0, "student.name": 1, "student.surname": 1 }
+    limit = 5
+)
+pd.DataFrame(list(first_grades))
+```
+
+- Étudiants du cours de NoSQL, ayant une note supérieure à 12, trié par ordre décroissant des notes et ordre croissant du nom de famille (on affiche le nom et le prénom de l'étudiant).
+
+```python
+sorted = db.collection_name.find(
+    { "course": "NoSQL", "grades.score": { "$gte":  12}},
+    {"_id": 0, "student.name": 1, "student.surname": 1 },
+    sort = (("grades.score", -1), ("student.surname", 1))
+)
+pd.DataFrame(list(c))
+```
