@@ -134,3 +134,46 @@ db.collection_name.distinct(
 )
 ```
 
+### Restriction et Projection
+
+- Fonction `find()` pour réaliser les *restrictions* et *projections*
+- Plusieurs paramètres : 
+    - Restriction (quels documents prendre) : même format que précédemment
+    - Projection (quels champs afficher)
+    - `limit` pour n'avoir que les $n$ premiers documents
+    - `sort` pour effectuer un tri des documents
+- PyMongo renvoit un curseur, qu'il faut donc gérer pour avoir le résultat
+- Transformation en `DataFrame` (du module `pandas`)
+  - Ce format n'est pas forcément idéal pour certains champs, notamment ceux imbriqués.
+
+### Sélection de champs à afficher ou non
+
+Dans la fonction `find()`, pour choisir les champs à afficher, le deuxième paramètre permet de faire une projection avec les critères suivants :
+
+- sans précision, l'identifiant interne est toujours affiché (`_id`)
+- `{ "champs": 1 }` : champs à afficher
+- `{ "champs": 0 }` : champs à ne pas afficher
+- Pas de mélange des 2 sauf pour l'identifiant interne à MongoDB (`_id`)
+    - `{ "_id": 0, "champs": 1, ...}`
+
+### Tri et limites
+
+Toujours dans la fonction `find()`, il est possible de faire le tri des documents, avec le paramètre `sort` qui prend un tuple composé d'un ou plusieurs tuples indiquant les critères de tri.
+
+- `( "champs", 1 )` : tri croissant
+- `( "champs", -1 )` : tri décroissant
+- plusieurs critères de tri possibles (dans les 2 sens)
+
+Dans ces fonctions, on peut aussi limiter l'exploration à une partie, avec les paramètres suivant :
+
+- `limit` : restreint le nombre de résultats fournis
+- `skip` : ne considère pas les *n* premiers documents
+
+### Récupération des 5 premiers documents
+
+Notez le contenu des colonnes `address` et `grades`.
+
+```python
+import pandas as pd
+pd.DataFrame(list(db.collection_name.find(limit = 5)))
+```
