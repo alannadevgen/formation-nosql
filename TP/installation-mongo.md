@@ -60,3 +60,15 @@ Pour requêter les données dans notre base de données nous allons utiliser le 
 ```bash
 $ pip install pymongo[srv]
 ```
+
+## Connexion à Compass
+
+![Compass connection](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/compass-connection.png)
+
+![Compass add connection](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/compass-add-connection.png)
+
+![Create database](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/create-database.png)
+
+## Import des données
+
+![Import data](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/import-data.png)
