@@ -52,3 +52,11 @@ Sur la page suivante nous pouvons choisir le type de Driver, Python dans notre c
 
 > [!NOTE]  
 > Pensez à copier la *connection string*, cela nous servira ensuite à nous connecter en Python à la base de données que nous venons de créer.
+
+## Interrogation des données MongoDB en Python
+
+Pour requêter les données dans notre base de données nous allons utiliser le package [`pymongo`](https://docs.mongodb.com/drivers/pymongo/), que l'on peut installer via :
+
+```bash
+$ pip install pymongo[srv]
+```
