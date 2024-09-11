@@ -63,12 +63,25 @@ $ pip install pymongo[srv]
 
 ## Connexion à Compass
 
+Maintenant nous allons pouvoir utiliser le cluster créé sur Atlas. Commençons par se connecter à notre instance.
+
 ![Compass connection](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/compass-connection.png)
 
+La connexion va se faire via la *connection string* qui peut être trouvée dans la configuration du cluster Atlas. 
+
+> [!CAUTION]
+> N'oubliez pas de remplacer le mot de passe sur l'image ci-dessous par celui que vous avez enregistré plus haut.
+
 ![Compass add connection](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/compass-add-connection.png)
+
+Une fois ceci fait, nous allons créer une base de données appelée `tp` qui contiendra une collection nommée `restaurants`.
 
 ![Create database](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/create-database.png)
 
 ## Import des données
 
+Ensuite, il suffit d'importer le fichier JSON qui se situe [ici](https://github.com/alannadevgen/formation-nosql/blob/main/TP/TP1/restaurants.json).
+
 ![Import data](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/import-data.png)
+
+Et voilà, vous êtes prêts à requêter les données ! :tada: Rendez-vous sur le sujet du [TP](https://github.com/alannadevgen/formation-nosql/blob/main/TP/TP1/tp1.md).
