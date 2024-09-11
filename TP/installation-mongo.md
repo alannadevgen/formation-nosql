@@ -40,3 +40,15 @@ Nous prenons l'instance M0 qui est gratuite et donnons un nom à cette dernière
 
 ![Creation cluster](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/creation-cluster.png)
 
+### Connexion au cluster Atlas
+
+Enfin, la dernière étape consiste à choisir le connecteur à la base de données. Dans notre cas, nous utiliserons l'API Python donc nous sélectionnons **Drivers**.
+
+![Connection method](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/connection-method.png)
+
+Sur la page suivante nous pouvons choisir le type de Driver, Python dans notre cas.
+
+![MongoDB driver](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/mongodb-driver.png)
+
+> [!NOTE]  
+> Pensez à copier la *connection string*, cela nous servira ensuite à nous connecter en Python à la base de données que nous venons de créer.
