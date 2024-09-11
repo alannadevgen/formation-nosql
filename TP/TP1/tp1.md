@@ -66,7 +66,7 @@ Pour ce TP, nous utiliserons le jeu de données `restaurants.json`, une base de 
 
 ## Questions complémentaires
 
-Les questions suivantes nécessitent une recherche toile pour compléter ce qui a déjà été vu dans ce TP.
+Les questions suivantes nécessitent une recherche pour compléter ce qui a déjà été vu dans ce TP.
 
 1. Lister les restaurants (nom et rue uniquement) situés sur une rue ayant le terme "Union" dans le nom
 1. Lister les restaurants ayant eu une visite le 1er février 2014
