@@ -84,4 +84,6 @@ Ensuite, il suffit d'importer le fichier JSON qui se situe [ici](https://github.
 
 ![Import data](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/import-data.png)
 
-Et voilà, vous êtes prêts à requêter les données ! :tada: Rendez-vous sur le sujet du [TP](https://github.com/alannadevgen/formation-nosql/blob/main/TP/TP1/tp1.md).
+Et voilà, vous êtes prêts à requêter les données ! :tada: 
+
+Avant de commencer le [TP](https://github.com/alannadevgen/formation-nosql/blob/main/TP/TP1/tp1.md), lisez les notes sur [le modèle MongoDB](https://github.com/alannadevgen/formation-nosql/blob/main/TP/model-mongodb.md) et [comment requêter les données MongoDB](https://github.com/alannadevgen/formation-nosql/blob/main/TP/query-mongo.md).
