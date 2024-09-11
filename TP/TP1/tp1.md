@@ -49,6 +49,22 @@ Pour ce TP, nous utiliserons le jeu de données `restaurants.json`, une base de 
 }
 ```
 
+## Connexion à la base de données
+
+Maintenant que tout est mis en place nous pouvons nous connecter à la base de données que nous avons créé.
+
+```python
+import pymongo
+
+
+URI = 'mongodb+srv://<user_name>:<password>@<cluster_name>.zrugz.mongodb.net/?retryWrites=true&w=majority&appName=<cluster_name>'
+client = pymongo.MongoClient(URI)
+db = client.tp
+
+# output the name of the collections in the database
+print("Collections: ", db.list_collection_names())
+print("Restaurants: ", db.restaurants)
+```
 
 
 ## A faire
