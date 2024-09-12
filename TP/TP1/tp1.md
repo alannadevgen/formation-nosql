@@ -71,7 +71,7 @@ print("Restaurants: ", db.restaurants)
 
 1. Donner les styles de cuisine présent dans la collection
 1. Donner tous les grades possibles dans la base
-1. Compter le nombre de restaurants proposant de la cuisine fraçaise ("French")
+1. Compter le nombre de restaurants proposant de la cuisine française ("French")
 1. Compter le nombre de restaurants situé sur la rue "Central Avenue"
 1. Compter le nombre de restaurants ayant eu une note supérieure à 50
 1. Lister tous les restaurants, en n'affichant que le nom, l'immeuble et la rue
