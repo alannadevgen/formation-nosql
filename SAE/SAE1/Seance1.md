@@ -40,7 +40,7 @@ print(customers)
 conn.close()
 ```
 
-###  Requêtes à programme en SQL
+###  Requêtes à programmer en SQL
 
 Voici les requêtes qui vont nous servir de test pour la réussite ou non de la migration. Pour chaque requête, faites un choix d’ordonnencement du résultat, s’il n’est pas précisé ou naturel. Cela permettra de mieux comparer les résultats après migration.
 
