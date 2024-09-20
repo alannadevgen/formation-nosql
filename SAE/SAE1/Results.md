@@ -153,6 +153,7 @@
 | Vintage Cars | USA       | 47090713.86     |
 
 8. Donner les 10 produits pour lesquels la marge moyenne est la plus importante (79 lignes) ;
+
 | productCode | productName                          | averageMargin |
 |-------------|--------------------------------------|---------------|
 | S10_1949    | 1952 Alpine Renault 1300             | 99.006429     |
