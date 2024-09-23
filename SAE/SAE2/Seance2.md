@@ -19,4 +19,4 @@ L'objectif de la séance est d'accomplir les 3 tâches suivantes :
 
 1. Établir le type de base de données NoSQL à utiliser :  clé-valeur (Redis), colonne (Apache Cassandra), document (MongoDB), graphe (Neo4j) ;
 2. Établir le schéma cible des données dans la base de données NoSQL choisie ;
-3. Établir le pseudo-algorithme permettant de passer du modèle relationnel au modèle NosSQL.
+3. Établir le pseudo-algorithme permettant de passer du modèle relationnel au modèle NoSQL.
