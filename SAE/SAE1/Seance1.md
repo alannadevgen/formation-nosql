@@ -1,4 +1,4 @@
-# SAÉ NoSQL
+# SAÉ NoSQL - Séance 1
 
 ## Base de données utilisée
 
@@ -11,12 +11,12 @@ Nous disposons de la base de données suivante ClassicModel :
 
 Nous voulons changer de technologie pour stocker les données. Et donc le choix a été fait de passer de ce format SQLite à un format NoSQL. Il va donc falloir préparer la migration de la BD à l’aide Python.
 
-### Cette migration va se faire en 4 étapes :
+Cette migration va se faire en 4 étapes :
 
-Création de requêtes SQL sur la BD initiale ;
-Réflexion sur le format des données à obtenir et l’algorithme à réaliser ;
-Ecriture du script Python permettant le passage de SQLite à NoSQL ;
-Création des requêtes initiales au nouveau format NoSQL pour s’assurer que la migration s’est bien passée.
+1. Création de requêtes SQL sur la BD initiale ;
+2. Réflexion sur le format des données à obtenir et l’algorithme à réaliser ;
+3. Écriture du script Python permettant le passage de SQLite à NoSQL ;
+4. Création des requêtes initiales au nouveau format NoSQL pour s’assurer que la migration s’est bien passée.
 
 ### Accès à SQLite dans Python
 
@@ -42,7 +42,7 @@ conn.close()
 
 ###  Requêtes à programmer en SQL
 
-Voici les requêtes qui vont nous servir de test pour la réussite ou non de la migration. Pour chaque requête, faites un choix d’ordonnencement du résultat, s’il n’est pas précisé ou naturel. Cela permettra de mieux comparer les résultats après migration.
+Voici les requêtes qui vont nous servir de test pour la réussite (ou non) de la migration. Pour chaque requête, faites un choix d’ordonnencement du résultat, s’il n’est pas précisé ou naturel. Cela permettra de mieux comparer les résultats après migration.
 
 1. Lister les clients n’ayant jamais effecuté une commande ;
 2. Pour chaque employé, le nombre de clients, le nombre de commandes et le montant total de celles-ci ;
