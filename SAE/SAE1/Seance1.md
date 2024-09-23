@@ -33,8 +33,16 @@ import pandas
 conn = sqlite3.connect("ClassicModel.sqlite")
 
 # Récupération du contenu de Customers avec une requête SQL
-customers = pandas.read_sql_query("SELECT * FROM Customers;", conn)
+customers = pandas.read_sql_query(
+   """
+   SELECT * 
+   FROM Customers;
+   """,
+   conn
+)
 print(customers)
+
+## CODE HERE
 
 # Fermeture de la connexion : IMPORTANT à faire dans un cadre professionnel
 conn.close()
