@@ -4,8 +4,17 @@
 
 ## A faire
 
-1. Quelles sont les 10 plus grandes chaînes de restaurants (i.e les restaurants avec un nom identique) ? Il y a 2 façons de faire.
-1. Donner le Top 5 et le Flop 5 des types de cuisine, en terme de nombre de restaurants. Il faut faire 2 requêtes.
+1. Quelles sont les 10 plus grandes chaînes de restaurants (i.e les restaurants avec un nom identique) ? Il existe deux façons de faire.
+
+[//]: # (    <details>)
+
+[//]: # (        <summary>Correction</summary>)
+
+[//]: # (        Text here)
+
+[//]: # (    </details>)
+
+2. Donner le Top 5 et le Flop 5 des types de cuisine, en terme de nombre de restaurants. Il faut faire 2 requêtes.
 1. Quelles sont les 10 rues avec le plus de restaurants ?
 1. Quelles sont les rues situées sur strictement plus de 2 quartiers ? Essayez d'ajouter le nom des quartiers de chaque rue (cf `addToSet`).
 1. Lister par quartier le nombre de restaurants et le score moyen. Attention à bien découper le tableau `grades`
