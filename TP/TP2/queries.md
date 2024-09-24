@@ -54,8 +54,62 @@ two_boroughs = db.restaurants.aggregate([
 pandas.DataFrame(list(two_boroughs))
 ```
 5. Lister par quartier le nombre de restaurants et le score moyen. Attention à bien découper le tableau `grades`
-```python
+Pour cette question il existe plusieurs façons de faire. Voici une proposition.
 
+Version 1 : score moyen de la dernière visite
+```python
+borough_nb_rest_avg_score = db.restaurants.aggregate([
+    { "$addFields": {
+        "first_grade": { "$first": "$grades" }
+    }},
+    { "$group": {
+        "_id": "$borough",
+        "nb_restaurants": { "$sum": 1 },
+        "score_moyen": { "$avg": "$first_grade.score" }
+    }},
+    { "$sort": { "score_moyen": 1 }}
+])
+pandas.DataFrame(list(borough_nb_rest_avg_score)).round(2)
+```
+Version 2 : score moyen de toutes les visites
+```python
+borough_nb_rest_avg_score = db.restaurants.aggregate([
+    { "$unwind": "$grades" },
+    { "$group": {
+        "_id": { "id_resto": "$_id", "br": "$borough" },
+        "nb_visites": { "$sum": 1 },
+        "score_tot": { "$sum": "$grades.score" }
+    }},
+    { "$group": {
+        "_id": "$_id.br",
+        "nb_restaurants": { "$sum": 1 },
+        "nb_visites": { "$sum": "$nb_visites" },
+        "score_total": { "$sum": "$score_tot" }
+    }},
+    { "$addFields": {
+        "score_moyen": {
+            "$divide": [ "$score_total", "$nb_visites" ]
+                       }
+    }},
+    { "$sort": { "score_moyen": 1 }}
+])
+pandas.DataFrame(list(borough_nb_rest_avg_score)).round(2)
+```
+Version 3 : score moyen de la dernière visite
+```python
+borough_nb_rest_avg_score = db.restaurants.aggregate([
+    { "$unwind": "$grades" },
+    { "$group": {
+        "_id": "$borough",
+        "liste_restaurants": { "$addToSet": "$_id" },
+        "score_moyen": { "$avg": "$grades.score" }
+    }},
+    { "$addFields": {
+        "nb_resto": { "$size": "$liste_restaurants" }
+    }},
+    { "$sort": { "score_moyen": 1 }}
+])
+pandas.DataFrame(list(borough_nb_rest_avg_score)).round(2)
 ```
 6. Donner les dates de début et de fin des évaluations
 ```python
