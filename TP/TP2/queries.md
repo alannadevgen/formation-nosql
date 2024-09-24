@@ -10,6 +10,7 @@ top10 = db.restaurants.aggregate([
 pandas.DataFrame(list(top10))
 ```
 2. Donner le Top 5 et le Flop 5 des types de cuisine, en terme de nombre de restaurants. Il faut faire 2 requêtes.
+
 Top 5
 ```python
 top5 = db.restaurants.aggregate([
@@ -50,9 +51,10 @@ two_boroughs = db.restaurants.aggregate([
 pandas.DataFrame(list(two_boroughs))
 ```
 5. Lister par quartier le nombre de restaurants et le score moyen. Attention à bien découper le tableau `grades`
+
 Pour cette question il existe plusieurs façons de faire. Voici une proposition.
 
-Version 1 : score moyen de la dernière visite
+**Version 1** : score moyen de la dernière visite
 ```python
 borough_nb_rest_avg_score = db.restaurants.aggregate([
     { "$addFields": {
@@ -67,7 +69,7 @@ borough_nb_rest_avg_score = db.restaurants.aggregate([
 ])
 pandas.DataFrame(list(borough_nb_rest_avg_score)).round(2)
 ```
-Version 2 : score moyen de toutes les visites
+**Version 2** : score moyen de toutes les visites
 ```python
 borough_nb_rest_avg_score = db.restaurants.aggregate([
     { "$unwind": "$grades" },
@@ -91,7 +93,7 @@ borough_nb_rest_avg_score = db.restaurants.aggregate([
 ])
 pandas.DataFrame(list(borough_nb_rest_avg_score)).round(2)
 ```
-Version 3 : score moyen de la dernière visite
+**Version 3** : score moyen de la dernière visite
 ```python
 borough_nb_rest_avg_score = db.restaurants.aggregate([
     { "$unwind": "$grades" },
@@ -119,7 +121,7 @@ start_end_dates = db.restaurants.aggregate([
 ])
 pandas.DataFrame(list(start_end_dates))
 ```
-7. Quels sont les 10 restaurants (nom, quartier, addresse et score) avec le plus petit score moyen ? &rarr; découpage, regroupement par restaurant, tri et limite
+7. Quels sont les 10 restaurants (nom, quartier, addresse et score) avec le plus petit score moyen ?
 ```python
 min_avg_score = db.restaurants.aggregate([
     { "$unwind": "$grades" },
