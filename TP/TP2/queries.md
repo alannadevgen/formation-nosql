@@ -1,8 +1,4 @@
-
-# Agrégation avec MongoDB
-
-
-## A faire
+# Séance 2 - Agrégation avec MongoDB
 
 1. Quelles sont les 10 plus grandes chaînes de restaurants (i.e les restaurants avec un nom identique) ? Il existe deux façons de faire.
 ```python

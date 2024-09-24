@@ -1,7 +1,5 @@
 # Séance 1 - Introduction à MongoDB
 
-## Requêtes MongoDB 
-
 1. Donner les styles de cuisine présent dans la collection
 ```python
 db.restaurants.distinct(key="cuisine")
