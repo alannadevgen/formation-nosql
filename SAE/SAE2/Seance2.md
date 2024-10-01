@@ -20,3 +20,22 @@ L'objectif de la séance est d'accomplir les 3 tâches suivantes :
 1. Établir le type de base de données NoSQL à utiliser :  clé-valeur (Redis), colonne (Apache Cassandra), document (MongoDB), graphe (Neo4j) ;
 2. Établir le schéma cible des données dans la base de données NoSQL choisie ;
 3. Établir le pseudo-algorithme permettant de passer du modèle relationnel au modèle NoSQL.
+
+Ci-dessous est un example de pseudo-code pour trouver le maximum d'une liste de nombres :
+```
+Début
+    Fonction TrouverMaximum(liste)
+        max = liste[0]  // Initialiser le maximum avec le premier élément de la liste
+
+        Pour chaque élément dans liste
+            Si élément > max alors
+                max = élément  // Mettre à jour le maximum si un plus grand nombre est trouvé
+            Fin Si
+        Fin Pour
+
+        Retourner max  // Retourner le plus grand élément
+    Fin Fonction
+Fin
+
+
+```
