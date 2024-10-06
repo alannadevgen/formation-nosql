@@ -47,23 +47,25 @@ Recherchez tous les nœuds de type `Person` :
 MATCH (n:Person) RETURN n
 ```
 
-## Partie 1 : Requêtes sur une base de données Northwind
+## Requêtes sur une base de données Northwind
 
-### 1.1 Lister tous les produits
+Les requêtes suivantes vous permettront de vous familiariser avec Cypher et d'explorer la base de données *Northwind*. Pour plus d'informations sur la base de données *Northwind*, vous pouvez consulter [ce lien](https://github.com/neo4j-graph-examples/northwind/).
+
+### Lister tous les produits
 
 Pour lister tous les produits présents dans la base de données *Northwind*, utilisez la requête suivante :
 ```cypher
 MATCH (p:Product) RETURN p.productName
 ```
 
-### 1.2 Rechercher un produit spécifique
+### Rechercher un produit spécifique
 
 Recherchez un produit spécifique par son nom :
 ```cypher
 MATCH (p:Product {productName: 'Chai'}) RETURN p
 ```
 
-### 1.3 Trouver les commandes d'un produit
+### Trouver les commandes d'un produit
 
 Pour trouver toutes les commandes qui contiennent un produit donné :
 ```cypher
@@ -71,7 +73,7 @@ MATCH (o:Order)-[:CONTAINS]->(p:Product {productName: 'Chai'})
 RETURN o.orderID
 ```
 
-### 1.4 Requêter les relations
+### Requêter les relations
 
 Pour lister toutes les relations entre les nœuds `Order` et `Product` :
 ```cypher
@@ -79,9 +81,9 @@ MATCH (o:Order)-[r]->(p:Product)
 RETURN o.orderID, type(r), p.productName
 ```
 
-## Partie 2 : Requêtes avancées
+## Requêtes avancées
 
-### 2.1 Trouver les produits commandés par un client
+### Trouver les produits commandés par un client
 
 Pour trouver tous les produits commandés par un client donné :
 ```cypher
@@ -89,7 +91,7 @@ MATCH (c:Customer {customerName: 'Alfreds Futterkiste'})-[:PLACED]->(o:Order)-[:
 RETURN p.productName
 ```
 
-### 2.2 Recommandation de produits
+### Recommandation de produits
 
 Pour recommander des produits que les autres clients ayant commandé les mêmes produits que *Alfreds Futterkiste* ont également achetés :
 ```cypher
@@ -98,9 +100,9 @@ WHERE NOT (c)-[:PLACED]->(:Order)-[:CONTAINS]->(recommendedProduct)
 RETURN DISTINCT recommendedProduct.productName
 ```
 
-## Partie 3 : Modifications et suppression de données
+## Modifications et suppression de données
 
-### 3.1 Mise à jour d'un nœud
+### Mise à jour d'un nœud
 
 Modifiez un attribut d'un produit existant :
 ```cypher
@@ -108,7 +110,7 @@ MATCH (p:Product {productName: 'Chai'})
 SET p.price = 19.99
 ```
 
-### 3.2 Suppression d'un produit et ses relations
+### Suppression d'un produit et ses relations
 
 Supprimez un produit et toutes ses relations avec les commandes :
 ```cypher
@@ -116,16 +118,16 @@ MATCH (p:Product {productName: 'Chai'})
 DETACH DELETE p
 ```
 
-## Partie 4 : Exploration des performances
+## Exploration des performances
 
-### 4.1 Utilisation des index
+### Utilisation des index
 
 Créez un index pour améliorer les performances des recherches sur les produits :
 ```cypher
 CREATE INDEX FOR (p:Product) ON (p.productName)
 ```
 
-### 4.2 Profilage d'une requête
+### Profilage d'une requête
 
 Pour voir comment Neo4j exécute une requête et optimiser les performances :
 ```cypher
@@ -239,6 +241,8 @@ graph TD;
     E --> |HAS_TYPE| K[GenreName];
     F --> |HAS_YEAR| L[YearValue];
 ```
+
+Pour plus d'informations sur la base de données de films, vous pouvez consulter [ce lien](https://github.com/neo4j-graph-examples/recommendations).
 
 Pour charger la base de données de films, utilisez la commande suivante dans la console Neo4j :
 
