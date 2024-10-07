@@ -25,6 +25,14 @@
 
 Cypher est le langage de requête de Neo4j. Voici quelques exemples de syntaxe de base.
 
+### Afficher les nœuds
+
+Afficher tous les nœuds dans la base de données :
+```cypher
+MATCH (n)
+RETURN n
+```
+
 ### Création de nœuds
 
 Créez un nœud représentant une personne :
@@ -227,20 +235,7 @@ RETURN m.title
 
 Pour la suite de ce TP nous allons utiliser une base de données de films. Voici le schéma de la base de données :
 
-```mermaid
-graph TD;
-    A[Movie] -- ACTED_IN --> B[Person];
-    A -- DIRECTED_BY --> C[Person];
-    A -- PRODUCED_BY --> D[Person];
-    A --> |HAS_GENRE| E[Genre];
-    A --> |RELEASED_IN| F[Year];
-    B --> |HAS_NAME| G[Name];
-    B --> |HAS_BIRTHDATE| H[Birthdate];
-    C --> |HAS_NAME| I[Name];
-    D --> |HAS_NAME| J[Name];
-    E --> |HAS_TYPE| K[GenreName];
-    F --> |HAS_YEAR| L[YearValue];
-```
+![Database Schema](https://github.com/neo4j-graph-examples/recommendations/blob/main/documentation/img/model.png)
 
 Pour plus d'informations sur la base de données de films, vous pouvez consulter [ce lien](https://github.com/neo4j-graph-examples/recommendations).
 
