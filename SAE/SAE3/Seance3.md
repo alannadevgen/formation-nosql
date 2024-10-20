@@ -137,3 +137,39 @@ db.gymnases.insert_many(
     gymnases.to_dict(orient = "records")
 )
 ```
+
+Vous pouvez aller voir le résultat dans MongoDB Compass. Vous pouvez aussi tester directement en interrogeant MongoDB pour le nombre de documents de la collection :
+
+```python
+db.gymnases.count_documents({})
+```
+
+Ainsi que le contenu de la collection :
+
+```python
+list(db.gymnases.find())
+```
+
+### TO-DO
+
+1. Créer la collection `sportifs`.
+2. Récupérer les informations du conseiller pour chaque sportif.
+
+### Jointure entre deux collections
+
+Supposons que vous avez créé la collection `sportifs`, avec comme champ `IdSportif`. Si nous souhaitons récupérer les informations de l'entraineur pour chaque séance, pour chaque gymnase, nous pouvons exécuter le code suivant :
+
+```python
+pandas.DataFrame(list(db.gymnases.aggregate([
+    { "$limit": 1 },
+    { "$unwind": "$Sessions" },
+    { "$lookup": {
+       "from": "Sportifs",
+       "localField": "Sessions.IdSportifEntraineur",
+       "foreignField": "IdSportif",
+       "as": "Entraineur"
+     }}
+])))
+```
+
+**A noter** : le résultat d'un `lookup` est forcément un tableau, même s'il n'y a qu'une seule valeur. A vous de faire le travail pour l'extraire dans un littéral simple si vous le souhaitez (par exemple avec `$first`).
