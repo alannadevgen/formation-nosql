@@ -17,7 +17,7 @@ Pour la suite du TP nous utiliserons les données `Gymnase2000` disponibles dans
 
 À partir de ce schéma nous allons créer deux collections :
 - **Gymnases** : chaque document concerne un *gymnase*, dans lequel on ajoute les informations de toutes les *séances* prévues (sous la forme d'une liste)
-- **Sportifs** : chaque document concerne un *sportif*, dans lequel on notera les sports qu'il *joue*, ainsi que saon entraîneur.e et les arbitres.
+- **Sportifs** : chaque document concerne un *sportif.ve*, pour chaque sportif.ve on stockera les informations concernant les sports pour lesquels il/elle joue, les sports pour lesquel il/elle s'entraîne ainsi que ceux pour lesquels il/elle est arbitre.
 
 ## Cluster MongoDB
 
