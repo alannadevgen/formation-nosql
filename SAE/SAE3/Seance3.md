@@ -127,3 +127,13 @@ Il ne reste plus qu'à ajouter ce résultat dans `gymnases`.
 gymnases = gymnases.assign(Sessions = sessions)
 gymnases.head()
 ```
+
+### Insertion dans la base de données MongoDB
+
+Maintenant que les données sont préparées, nous pouvons insérer les données dans MongoDB.
+
+```python
+db.gymnases.insert_many(
+    gymnases.to_dict(orient = "records")
+)
+```
