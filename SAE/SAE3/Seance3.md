@@ -82,7 +82,7 @@ seances.query('IdGymnase == @id')
 
 Et on obtient
 
-```json
+```
 [
     {
         'IdSportifEntraineur': 6,
@@ -99,4 +99,23 @@ Et on obtient
         'Libelle': 'Hockey'
     }
 ]
+```
+
+On peut faire cette opération au travers d'une liste compréhension pour toutes les séances :
+
+```python
+sessions = [
+    seances.query('IdGymnase == @id')
+        .drop(columns=["IdGymnase", "IdSport"])
+        .to_dict(orient = "records") 
+        for id in gymnases.IdGymnase
+]
+print(sessions)
+```
+
+Il ne reste plus qu'à ajouter ce résultat dans `gymnases`.
+
+```python
+gymnases = gymnases.assign(Sessions = sessions)
+gymnases.head()
 ```
