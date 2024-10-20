@@ -56,3 +56,47 @@ seances = pandas.read_sql_query(
     conn
 )
 ```
+
+Maintenant, il faut ajouter une colonne `seances` dans `gymnases`. Pour cela, regardons le résultat attendu pour le gymnase ayant l'identifiant `6`.
+
+```python
+id = 6
+gym6 = seances.query('IdGymnase == @id')
+print(gym6)
+```
+
+Le résultat est le suivant :
+
+| IdGymnase | IdSport | IdSportifEntraineur | Jour     | Horaire | Durée | Libelle |
+|-----------|---------|---------------------|----------|---------|-------|---------|
+| 6         | 5       | 6                   | vendredi | 19.0    | 60    | Hockey  |
+| 6         | 5       | 7                   | jeudi    | 17.0    | 90    | Hockey  |
+
+On voit ici qu'il y a les identifiants du gymnase et du sport qui sont des informations redondantes car déjà présentes dans l'objet `gymnases`. Pour ce faire, nous allons les supprimer et les convertir en liste afin de les ajouter dans `gymnases` (grâce aux fonctions `drop` et `to_dict`).
+
+```python
+seances.query('IdGymnase == @id')
+    .drop(columns = ["IdGymnase", "IdSport"])
+    .to_dict(orient = "records")
+```
+
+Et on obtient
+
+```json
+[
+    {
+        'IdSportifEntraineur': 6,
+        'Jour': 'vendredi',
+        'Horaire': 19.0,
+        'Duree': 60,
+        'Libelle': 'Hockey'
+    },
+    {
+        'IdSportifEntraineur': 7,
+        'Jour': 'jeudi',
+        'Horaire': 17.0,
+        'Duree': 90,
+        'Libelle': 'Hockey'
+    }
+]
+```
