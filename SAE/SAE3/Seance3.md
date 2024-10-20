@@ -23,8 +23,8 @@ Pour la suite du TP nous utiliserons les données `Gymnase2000` disponibles dans
 
 Avant de commencer le TP, connectez-vous à [MongoDB Atlas](https://account.mongodb.com/account/login?signedOut=true) et créez un cluster comme vu lors des TPs. Si vous avez besoin d'un rappel vous pouvez consulter la page [installation MongoDB](../../TP/installation-mongo.md).
 
-Database name : `sae`
-Collection name : `gymanses`
+- Database name : `sae`
+- Collection name : `gymanses`
 
 ### Création de la collection Gymnases
 
