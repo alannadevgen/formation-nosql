@@ -11,6 +11,48 @@ L'objectif de cette séance est d'écrire le script de migration d'une base de d
 
 ## Données
 
-Pour la suite du TP nous utiliserons les données `Gymnase2000` disponibles dans le fichier `Gymnase2000.sqlite`.
+Pour la suite du TP nous utiliserons les données `Gymnase2000` disponibles dans le fichier `Gymnase2000.sqlite` dont le schéma est ci-dessous.
 
 ![Gymnase2000 ER](../img/Gymnase2000.png)
+
+À partir de ce schéma nous allons créer deux collections :
+- **Gymnases** : chaque document concerne un *gymnase*, dans lequel on ajoute les informations de toutes les *séances* prévues (sous la forme d'une liste)
+- **Sportifs** : chaque document concerne un *sportif*, dans lequel on notera les sports qu'il *joue*, ainsi que saon entraîneur.e et les arbitres.
+
+### Création de la collection Gymnases
+
+On commence par se connecter à la base de données en local.
+
+```python
+import sqlite3
+import pandas
+import pymongo
+
+client = pymongo.MongoClient()
+db = client.sae
+
+# Création de la connexion
+conn = sqlite3.connect("Gymnase2000.sqlite")
+```
+
+Une fois ceci fait, nous pouvons récupérer les données en faisant des requêtes SQL, comme suit.
+
+```python
+gymnases = pandas.read_sql_query(
+    """
+    SELECT *
+    FROM Gymnases;
+    """,
+    conn
+)
+
+seances = pandas.read_sql_query(
+    """
+    SELECT *
+    FROM Seances
+    INNER JOIN Sports
+    USING (IdSport);
+    """,
+    conn
+)
+```
