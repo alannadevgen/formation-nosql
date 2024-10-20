@@ -173,3 +173,7 @@ pandas.DataFrame(list(db.gymnases.aggregate([
 ```
 
 **A noter** : le résultat d'un `lookup` est forcément un tableau, même s'il n'y a qu'une seule valeur. A vous de faire le travail pour l'extraire dans un littéral simple si vous le souhaitez (par exemple avec `$first`).
+
+# Retour sur ClassicModel
+
+Une fois que vous avez fini les questions sur la base de données `Gymnase2000` vous pouvez faire la migration sur votre base de données `ClassicModel` en suivant l'architecture cible définie lors de la séance 2.
