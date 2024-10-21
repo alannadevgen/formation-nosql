@@ -155,7 +155,7 @@ list(db.gymnases.find())
 1. Créer la collection `sportifs`.
 2. Récupérer les informations du conseiller pour chaque sportif.
 
-### Jointure entre deux collections
+### Jointure entre deux collections (aide pour la question 2)
 
 Supposons que vous avez créé la collection `sportifs`, avec comme champ `IdSportif`. Si nous souhaitons récupérer les informations de l'entraineur pour chaque séance, pour chaque gymnase, nous pouvons exécuter le code suivant :
 
