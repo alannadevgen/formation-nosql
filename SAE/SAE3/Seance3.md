@@ -83,8 +83,8 @@ Le résultat est le suivant :
 On voit ici qu'il y a les identifiants du gymnase et du sport qui sont des informations redondantes car déjà présentes dans l'objet `gymnases`. Pour ce faire, nous allons les supprimer et les convertir en liste afin de les ajouter dans `gymnases` (grâce aux fonctions `drop` et `to_dict`).
 
 ```python
-seances.query('IdGymnase == @id')
-    .drop(columns = ["IdGymnase", "IdSport"])
+seances.query('IdGymnase == @id')\
+    .drop(columns = ["IdGymnase", "IdSport"])\
     .to_dict(orient = "records")
 ```
 
