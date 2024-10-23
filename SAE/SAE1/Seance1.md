@@ -1,5 +1,11 @@
 # SAÉ NoSQL - Séance 1
 
+## :car: Contexte
+
+La directrice d'une entreprise de voitures, Paula DUPONT, veut opérer une migration depuis une base de données relationnelle vers une base de données NoSQL. En effet, la BDD actuelle commence à présenter des limites : requête avec forte latence, perte de données dues à des défaillances serveur (qui arrivent de plus en plus fréquement), etc.
+
+Paula DUPONT vous missionne pour opérer la migration vers une base de données NoSQL. Pour cela elle vous met à disposition son jeu de données nommé `ClassicModel`.
+
 ## Base de données utilisée
 
 Nous disposons de la base de données suivante ClassicModel :

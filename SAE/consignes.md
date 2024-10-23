@@ -25,7 +25,7 @@ Le rapport à pour objectif de présenter la migration : contexte, difficultés 
 
 Le rapport doit faire 5 pages maximum (format PDF). Vous pouvez ajouter des images si vous le souhaitez.
 
-Le rapport doit être déposé sur Moodle dans l'onglet **SAÉ - Rapport**
+Le rapport doit être déposé sur Moodle dans l'onglet **SAÉ - Rapport**.
 
 ### :computer: Code
 
