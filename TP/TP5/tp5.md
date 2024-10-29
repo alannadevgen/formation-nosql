@@ -175,6 +175,12 @@ CREATE TABLE IF NOT EXISTS nestera.devices (
 -->
 
 3. Insérez des données dans la table `devices` pour simuler des appareils IoT.
+
+| device_id                            | device_name            | device_type | home_id                              | location     |
+|--------------------------------------|------------------------|-------------|--------------------------------------|--------------|
+| c1045906-857f-401f-b16e-425f077ad934 | Kitchen Smart Plug     | smart_plug  | 4e138e7f-2598-4e2d-bba4-cceb190e3737 | kitchen      |
+| f0c107b2-82e3-4ed3-97ac-0ceeaaac8196 | Living Room Thermostat | thermostat  | f3e35e3f-a2bf-4b53-838d-7370065fb222 | living room  |
+
 <!--
 INSERT INTO nestera.devices (device_id, home_id, device_name, device_type, location)
 VALUES (uuid(), uuid(), 'Living Room Thermostat', 'thermostat', 'living room');
@@ -198,6 +204,23 @@ CREATE TABLE IF NOT EXISTS nestera.energy_consumption (
 ) WITH CLUSTERING ORDER BY (timestamp DESC);
 -->
 5. Insérez des données dans la table `energy_usage` pour simuler la consommation d'énergie des appareils IoT. 
+
+| home_id                              | device_id                            | timestamp                       | power_usage |
+|--------------------------------------|--------------------------------------|---------------------------------|-------------|
+| 4e138e7f-2598-4e2d-bba4-cceb190e3737 | c1045906-857f-401f-b16e-425f077ad934 | 2023-10-07 12:02:19.976000+0000 | 5.5         |
+| f3e35e3f-a2bf-4b53-838d-7370065fb222 | f0c107b2-82e3-4ed3-97ac-0ceeaaac8196 | 2024-11-02 22:01:26.614000+0000 | 3.2         |
+
+> [!TIP]
+> Vous pouvez utiliser la fonction `toTimestamp(now())` pour insérer la date actuelle.
+
+<!--
+INSERT INTO nestera.energy_consumption (device_id, home_id, timestamp, power_usage)
+VALUES (c1045906-857f-401f-b16e-425f077ad934, 4e138e7f-2598-4e2d-bba4-cceb190e3737, toTimestamp(now()), 5.5);
+
+INSERT INTO nestera.energy_consumption (device_id, home_id, timestamp, power_usage)
+VALUES (f0c107b2-82e3-4ed3-97ac-0ceeaaac8196, f3e35e3f-a2bf-4b53-838d-7370065fb222, toTimestamp(now()), 3.2);
+-->
+
 <!--
 1. Créez un index sur la colonne `device_id` de la table `energy_usage`.
 2. Supprimez les données de consommation d'énergie pour un appareil spécifique.
