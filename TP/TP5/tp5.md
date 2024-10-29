@@ -85,13 +85,13 @@ CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Ca
 ### Exemples de commandes en CQL
 
 - **Création d'un keyspace** :
-    ```cassandraql
+    ```cql
     CREATE KEYSPACE vroomly
     WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
     ```
 
 - **Création d’une table** :
-    ```cassandraql
+    ```sql
     CREATE TABLE users (
         id UUID PRIMARY KEY,
         name TEXT,
@@ -99,13 +99,13 @@ CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Ca
     );
     ```
 - **Insertion de données** :
-    ```cassandraql
+    ```sql
     INSERT INTO users (id, name, age) 
     VALUES (uuid(), 'Alice', 30);
     ```
 
 - **Sélection de données** :
-    ```cassandraql
+    ```sql
     SELECT * FROM users WHERE age > 25;
     ```
   
