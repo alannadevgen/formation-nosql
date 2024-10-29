@@ -121,12 +121,18 @@ Jusqu'ici cela ressemble à du SQL, mais il y a des différences. En effet, comm
 
 Nous allons créer un [compte DataStax](https://astra.datastax.com/signup) afin de pouvoir héberger une base de données Apache Cassandra.
 
-Une fois votre compte crée, vous allez pouvoir créer une base de données. Pour cela, cliquez sur l'onglet **Databases** puis sur  **Create Database**.
+Une fois votre compte crée, vous allez pouvoir créer une base de données. Pour cela, cliquez sur l'onglet **Databases** puis sur **Create Database**.
 
 ![Create database](img/create-database.png)
 
 Cela vous amènera sur une page où vous pourrez choisir le type de base de données que vous souhaitez créer. Sélectionnez **Serverless (Non-Vector)** puis renseignez le nom de la base de données, le nom du keyspace ainsi que la région (ne pas changer le provider).
 
+- **Nom de la base de données** : `tp`
+- **Nom du keyspace** : `vroomly`
+- **Région** : `eu-west-1`
+
 ![Creating database](img/creating-database.png)
 
 La création de la base de données peut prendre quelques minutes. Une fois terminée, vous pourrez accéder à la console CQL.
+
+![CQL console](img/describe-keyspace.png)
