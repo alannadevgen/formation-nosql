@@ -84,7 +84,9 @@ CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Ca
 
 ### Exemples de commandes en CQL
 
-La présidente d'une entreprise de VTC `Vroomly` a une base de données contenant des informations sur les utilisateurs. Voici quelques exemples de commandes CQL pour interagir avec cette base de données :
+Patricia DUBOIS, présidente de l'entreprise de VTC `Vroomly`, dispose de données sur les utilisateurs et les courses effectuées. Elle souhaite stocker ces données dans une base de données Cassandra pour les analyser et améliorer son service.
+
+Voici quelques exemples de commandes CQL pour interagir avec cette base de données :
 
 - **Création d'un keyspace** :
     ```cql
@@ -146,4 +148,67 @@ Sur le repository GitHub, vous trouverez un fichier `init.cql` contenant les com
 > ![Keyspace](img/create-keyspace.png)
 
 ## TO-DO
-Nestera
+
+La start-up Nestera dispose de données de capteurs IoT provenant de divers appareils connectés (thermostats, prises intelligentes, lumières, etc). L'objectif est de suivre l'utilisation de l'énergie en temps réel et de fournir aux propriétaires des informations sur leurs habitudes de consommation d'énergie.
+
+Dans ce système, chaque maison dispose de plusieurs appareils IoT qui signalent leur consommation d'énergie toutes les minutes. Nous avons besoin de stocker :
+- Les données de consommation d'énergie des différents appareils.
+- Les métadonnées des appareils (comme l'emplacement et le type).
+- La consommation agrégée pour les rapports et les analyses.
+
+1. Créez un keyspace `nestera`.
+
+2. Créez une table `devices` pour stocker les métadonnées des appareils IoT. La table doit contenir les colonnes suivantes :
+   - `device_id` : UUID, clé primaire
+   - `home_id` UUID
+   - `device_name` TEXT
+   - `device_type` TEXT
+   - `location` TEXT
+<!--
+CREATE TABLE IF NOT EXISTS nestera.devices (
+    device_id UUID PRIMARY KEY,
+    home_id UUID,
+    device_name TEXT,
+    device_type TEXT,
+    location TEXT
+);
+-->
+
+3. Insérez des données dans la table `devices` pour simuler des appareils IoT.
+<!--
+INSERT INTO nestera.devices (device_id, home_id, device_name, device_type, location)
+VALUES (uuid(), uuid(), 'Living Room Thermostat', 'thermostat', 'living room');
+
+INSERT INTO nestera.devices (device_id, home_id, device_name, device_type, location)
+VALUES (uuid(), uuid(), 'Kitchen Smart Plug', 'smart_plug', 'kitchen');
+-->
+
+4. Créez une table `energy_consumption` pour stocker les données de consommation d'énergie avec les colonnes suivantes :
+   - `device_id` : UUID, clé primaire
+   - `home_id` UUID, clé primaire
+   - `timestamp` : TIMESTAMP, clé de clustering
+   - `power_usage` : FLOAT
+<!--
+CREATE TABLE IF NOT EXISTS nestera.energy_consumption (
+    device_id UUID,
+    home_id UUID,
+    timestamp TIMESTAMP,
+    power_usage FLOAT,
+    PRIMARY KEY ((home_id, device_id), timestamp)
+) WITH CLUSTERING ORDER BY (timestamp DESC);
+-->
+5. Insérez des données dans la table `energy_usage` pour simuler la consommation d'énergie des appareils IoT. 
+<!--
+1. Créez un index sur la colonne `device_id` de la table `energy_usage`.
+2. Supprimez les données de consommation d'énergie pour un appareil spécifique.
+3. Mettez à jour les métadonnées d'un appareil IoT.
+4. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
+5. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par type d'appareil.
+6. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par emplacement.
+7. Supprimez les données de consommation d'énergie pour un appareil spécifique.
+8. Mettez à jour les métadonnées d'un appareil IoT.
+9. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
+10. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par type d'appareil.
+11. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par emplacement.
+12. Supprimez les données de consommation d'énergie pour un appareil spécifique.
+-->
