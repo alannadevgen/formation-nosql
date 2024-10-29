@@ -91,7 +91,7 @@ CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Ca
     ```
 
 - **Création d’une table** :
-    ```sql
+    ```cql
     CREATE TABLE users (
         id UUID PRIMARY KEY,
         name TEXT,
@@ -99,13 +99,13 @@ CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Ca
     );
     ```
 - **Insertion de données** :
-    ```sql
+    ```cql
     INSERT INTO users (id, name, age) 
     VALUES (uuid(), 'Alice', 30);
     ```
 
 - **Sélection de données** :
-    ```sql
+    ```cql
     SELECT * FROM users WHERE age > 25;
     ```
   
