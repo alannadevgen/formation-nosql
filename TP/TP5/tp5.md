@@ -241,26 +241,28 @@ CREATE INDEX IF NOT EXISTS device_id_index ON nestera.energy_consumption (device
 ```
 -->
 
-8. Supprimez les données de consommation d'énergie pour un appareil spécifique.
+8. Supprimez les données de consommation d'énergie pour de l'appareil `c1045906-857f-401f-b16e-425f077ad934`.
 <!--
 ```cql
 DELETE FROM nestera.energy_consumption WHERE device_id=c1045906-857f-401f-b16e-425f077ad934 AND home_id=4e138e7f-2598-4e2d-bba4-cceb190e3737;
 ```
 -->
 
-9. Changer le nom de l'appareil IoT `Kitchen Smart Plug` en `Super Smart Plug`.
+9. Changer le nom de l'appareil `Kitchen Smart Plug` en `Super Smart Plug`.
 <!--
 ```cql
 UPDATE nestera.devices SET device_name='Super Smart Plug' WHERE device_id=c1045906-857f-401f-b16e-425f077ad934;
 ```
+-->
 
+<!--
 10.
 ```cql
 SELECT * FROM nestera.energy_consumption
 WHERE home_id = f3e35e3f-a2bf-4b53-838d-7370065fb222 AND device_id = f0c107b2-82e3-4ed3-97ac-0ceeaaac8196
 ORDER BY timestamp DESC LIMIT 10;
 ```
-
+-->
 
 <!--
 4. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
