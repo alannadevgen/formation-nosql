@@ -108,9 +108,7 @@ CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Ca
     ```cql
     SELECT * FROM users WHERE age > 25;
     ```
-  
+Jusqu'ici cela ressemble à du SQL, mais il y a des différences. En effet, comme vu dans le cours, chaque table correspond à une requête. Ainsi, il est important de bien choisir la clé de partition et la clé de clustering pour optimiser les performances de la base de données.
 
-
-
-
-
+> [!IMPORTANT]
+> Toutes les colonnes qui sont dans la PRIMARY KEY doivent être utilisées dans la requête SELECT.
