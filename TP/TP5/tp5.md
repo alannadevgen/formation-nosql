@@ -136,3 +136,11 @@ Cela vous amènera sur une page où vous pourrez choisir le type de base de donn
 La création de la base de données peut prendre quelques minutes. Une fois terminée, vous pourrez accéder à la console CQL.
 
 ![CQL console](img/describe-keyspace.png)
+
+Vous pouvez maintenant commencer à interagir avec la base de données en utilisant le langage CQL.
+
+Sur le repository GitHub, vous trouverez un fichier `init.cql` contenant les commandes CQL. Vous pouvez les copier-coller dans la console CQL. Requêtez la base de données pour vérifier que les données ont bien été insérées et vous familiariser avec le CQL.
+
+> [!WARNING]
+> Sur DataStax il n'est pas possible de créer/modifier/supprimer un keyspace via les commandes CQL. Pour cela, vous devrez passer par l'interface web.
+
