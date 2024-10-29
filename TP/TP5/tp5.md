@@ -241,7 +241,7 @@ CREATE INDEX IF NOT EXISTS device_id_index ON nestera.energy_consumption (device
 ```
 -->
 
-8. Supprimez les données de consommation d'énergie pour de l'appareil `c1045906-857f-401f-b16e-425f077ad934`.
+8. Supprimez les données de consommation d'énergie pour l'appareil `c1045906-857f-401f-b16e-425f077ad934`.
 <!--
 ```cql
 DELETE FROM nestera.energy_consumption WHERE device_id=c1045906-857f-401f-b16e-425f077ad934 AND home_id=4e138e7f-2598-4e2d-bba4-cceb190e3737;
