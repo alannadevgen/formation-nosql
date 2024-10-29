@@ -98,6 +98,7 @@ CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Ca
         age INT
     );
     ```
+  Pour plus d'informations sur les types de données supportés par Cassandra, vous pouvez consulter [ce lien](https://cassandra.apache.org/doc/latest/cql/types.html).
 - **Insertion de données** :
     ```cql
     INSERT INTO users (id, name, age) 
@@ -111,4 +112,5 @@ CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Ca
 Jusqu'ici cela ressemble à du SQL, mais il y a des différences. En effet, comme vu dans le cours, chaque table correspond à une requête. Ainsi, il est important de bien choisir la clé de partition et la clé de clustering pour optimiser les performances de la base de données.
 
 > [!IMPORTANT]
-> Toutes les colonnes qui sont dans la PRIMARY KEY doivent être utilisées dans la requête SELECT.
+> Toutes les colonnes qui sont dans la PRIMARY KEY doivent être utilisées dans la clause WHERE de la requête SELECT.
+> Par exemple, si la clé primaire est composée de `id` et `name`, la requête SELECT doit contenir ces deux colonnes dans la clause WHERE.
