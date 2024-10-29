@@ -143,5 +143,7 @@ Sur le repository GitHub, vous trouverez un fichier `init.cql` contenant les com
 
 > [!WARNING]
 > Sur DataStax il n'est pas possible de créer/modifier/supprimer un keyspace via les commandes CQL. Pour cela, vous devrez passer par l'interface web.
-> ![Keyspace](img/create-keysapce.png)
+> ![Keyspace](img/create-keyspace.png)
 
+## TO-DO
+Nestera
