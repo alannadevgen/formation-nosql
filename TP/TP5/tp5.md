@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS nestera.devices (
 );
 -->
 
-3. Insérez des données dans la table `devices` pour simuler des appareils IoT.
+3. Insérez les données ci-dessous dans la table `devices`.
 
 | device_id                            | device_name            | device_type | home_id                              | location     |
 |--------------------------------------|------------------------|-------------|--------------------------------------|--------------|
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS nestera.energy_consumption (
     PRIMARY KEY ((home_id, device_id), timestamp)
 ) WITH CLUSTERING ORDER BY (timestamp DESC);
 -->
-5. Insérez des données dans la table `energy_usage` pour simuler la consommation d'énergie des appareils IoT. 
+5. Insérez les données suivantes dans la table `energy_consumption`.
 
 | home_id                              | device_id                            | timestamp                       | power_usage |
 |--------------------------------------|--------------------------------------|---------------------------------|-------------|
