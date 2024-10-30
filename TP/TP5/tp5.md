@@ -116,7 +116,22 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
         age INT
     );
     ```
-  Pour plus d'informations sur les types de données supportés par Cassandra, vous pouvez consulter [la documentation](https://cassandra.apache.org/doc/latest/cql/types.html).
+    Pour plus d'informations sur les types de données supportés par Cassandra, vous pouvez consulter [la documentation](https://cassandra.apache.org/doc/latest/cql/types.html).
+
+    On peut également définir des clés de clustering pour trier les données dans la table.
+    ```cql
+    CREATE TABLE vroomly.rides (
+        driver_id UUID,
+        customer_id UUID,
+        timestamp TIMESTAMP,
+        price FLOAT,
+        PRIMARY KEY ((driver_id, customer_id), timestamp)
+    ) WITH CLUSTERING ORDER BY (timestamp DESC);
+    ```
+    Ici la clé primaire est composée de `driver_id` et `customer_id`, et la clé de clustering est `timestamp`.
+    On ajoute `WITH CLUSTERING ORDER BY (timestamp DESC)` pour trier les données par ordre décroissant de `timestamp`.
+
+
 - **Insertion de données** :
     ```cql
     INSERT INTO vroomly.users (id, name, age)
