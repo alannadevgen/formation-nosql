@@ -60,7 +60,7 @@ Cassandra est bien adapté aux applications telles que :
 
 Un keyspace dans Cassandra est un namespace qui regroupe un ensemble de tables (équivalent à un schéma dans une base de données relationnelle). Un keyspace définit les paramètres de réplication pour les données qui y sont stockées.
 
-### Caractéristiques des Keyspaces
+### Caractéristiques des keyspaces
 
 - **Stratégie de réplication** : La stratégie de réplication définit comment les données sont copiées entre les nœuds. Il existe plusieurs stratégies de réplication, comme `SimpleStrategy` pour une réplication dans un seul data center, et `NetworkTopologyStrategy` pour plusieurs data centers.
 - **Facteur de réplication** : Définit le nombre de copies de données dans le cluster. Par exemple, un facteur de réplication de 3 signifie que chaque donnée est répliquée sur trois nœuds.
@@ -93,31 +93,45 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     CREATE KEYSPACE vroomly
     WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
     ```
+  
+- **Changement de keyspace** : 
+    ```cql
+    USE vroomly ;
+    ```
+    L'instruction `USE` replace le keyspace courant à celui spécifié dans la requête.
+    Ainsi, toutes les requêtes suivantes seront exécutées dans le keyspace `vroomly`.
+    Il n'est pas nécessaire de spécifier le keyspace dans les requêtes suivantes.
+    On peut écrire directement `CREATE TABLE users (...)` sans spécifier le keyspace.
 
 - **Création d’une table** :
     ```cql
-    CREATE TABLE users (
+    CREATE TABLE vroomly.users (
         id UUID PRIMARY KEY,
         name TEXT,
         age INT
     );
     ```
-  Pour plus d'informations sur les types de données supportés par Cassandra, vous pouvez consulter [ce lien](https://cassandra.apache.org/doc/latest/cql/types.html).
+  Pour plus d'informations sur les types de données supportés par Cassandra, vous pouvez consulter [la documentation](https://cassandra.apache.org/doc/latest/cql/types.html).
 - **Insertion de données** :
     ```cql
-    INSERT INTO users (id, name, age) 
+    INSERT INTO vroomly.users (id, name, age)
     VALUES (uuid(), 'Alice', 30);
     ```
 
 - **Sélection de données** :
     ```cql
-    SELECT * FROM users WHERE age > 25;
+    SELECT * FROM vroomly.users WHERE age > 25;
     ```
+
 Jusqu'ici cela ressemble à du SQL, mais il y a des différences. En effet, comme vu dans le cours, chaque table correspond à une requête. Ainsi, il est important de bien choisir la clé de partition et la clé de clustering pour optimiser les performances de la base de données.
 
 > [!IMPORTANT]
 > Toutes les colonnes qui sont dans la PRIMARY KEY doivent être utilisées dans la clause WHERE de la requête SELECT.
 > Par exemple, si la clé primaire est composée de `id` et `name`, la requête SELECT doit contenir ces deux colonnes dans la clause WHERE.
+
+Documentation :
+- [Manipulation de données](https://cassandra.apache.org/doc/stable/cassandra/cql/ddl.html) : CREATE, ALTER, DROP (table, keyspace)
+- [Requêtes](https://cassandra.apache.org/doc/stable/cassandra/cql/dml.html) : SELECT, INSERT, UPDATE, DELETE
 
 ## Place à la pratique
 
@@ -265,13 +279,10 @@ ORDER BY timestamp DESC LIMIT 10;
 -->
 
 <!--
-4. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
-5. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par type d'appareil.
-6. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par emplacement.
-7. Supprimez les données de consommation d'énergie pour un appareil spécifique.
-8. Mettez à jour les métadonnées d'un appareil IoT.
-9. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
-10. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par type d'appareil.
-11. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par emplacement.
-12. Supprimez les données de consommation d'énergie pour un appareil spécifique.
+1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
+1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par type d'appareil.
+1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par emplacement.
+1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
+1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par type d'appareil.
+1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par emplacement.
 -->
