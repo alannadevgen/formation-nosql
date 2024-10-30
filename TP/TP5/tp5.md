@@ -98,10 +98,15 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     ```cql
     USE vroomly ;
     ```
-    L'instruction `USE` replace le keyspace courant à celui spécifié dans la requête.
+    L'instruction `USE` replace le keyspace courant par celui spécifié dans la requête.
     Ainsi, toutes les requêtes suivantes seront exécutées dans le keyspace `vroomly`.
     Il n'est pas nécessaire de spécifier le keyspace dans les requêtes suivantes.
     On peut écrire directement `CREATE TABLE users (...)` sans spécifier le keyspace.
+
+- **Suppression d'un keyspace** :
+    ```cql
+    DROP KEYSPACE IF EXISTS vroomly;
+    ```
 
 - **Création d’une table** :
     ```cql
@@ -115,12 +120,40 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
 - **Insertion de données** :
     ```cql
     INSERT INTO vroomly.users (id, name, age)
-    VALUES (uuid(), 'Alice', 30);
+    VALUES (6a6148d1-4a56-4d6a-a610-cdf7b7e3b959, 'Alice', 30);
+
+    INSERT INTO vroomly.users (id, name, age)
+    VALUES (uuid(), 'Bob', 23);
     ```
 
 - **Sélection de données** :
     ```cql
     SELECT * FROM vroomly.users WHERE age > 25;
+    ```
+
+- **Mise à jour de données** :
+    ```cql
+    UPDATE vroomly.users SET age = 26 WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
+    ```
+
+- **Suppression de données** :
+    ```cql
+    DELETE FROM vroomly.users WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
+    ```
+
+- **Suppression d'une table** :
+    ```cql
+    DROP TABLE IF EXISTS vroomly.users;
+    ```
+
+- **Création d'un index** :
+    ```cql
+    CREATE INDEX IF NOT EXISTS name_index ON vroomly.users (name);
+    ```
+
+- **Suppression d'un index** :
+    ```cql
+    DROP INDEX IF EXISTS name_index;
     ```
 
 Jusqu'ici cela ressemble à du SQL, mais il y a des différences. En effet, comme vu dans le cours, chaque table correspond à une requête. Ainsi, il est important de bien choisir la clé de partition et la clé de clustering pour optimiser les performances de la base de données.
