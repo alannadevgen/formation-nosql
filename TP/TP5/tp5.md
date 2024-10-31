@@ -103,6 +103,18 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     Il n'est pas nécessaire de spécifier le keyspace dans les requêtes suivantes.
     On peut écrire directement `CREATE TABLE users (...)` sans spécifier le keyspace.
 
+- **Liste des keyspaces** :
+    ```cql
+    DESCRIBE KEYSPACES;
+    ```
+    Cette commande permet de lister tous les keyspaces disponibles dans le cluster.
+
+- **Description d'un keyspace** :
+    ```cql
+    DESCRIBE KEYSPACE vroomly;
+    ```
+    Cette commande permet de voir les détails du keyspace `vroomly`.
+
 - **Suppression d'un keyspace** :
     ```cql
     DROP KEYSPACE IF EXISTS vroomly;
@@ -131,6 +143,17 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     Ici la clé primaire est composée de `driver_id` et `customer_id`, et la clé de clustering est `timestamp`.
     On ajoute `WITH CLUSTERING ORDER BY (timestamp DESC)` pour trier les données par ordre décroissant de `timestamp`.
 
+- **Liste des tables** :
+    ```cql
+    DESCRIBE TABLES;
+    ```
+    Cette commande permet de lister toutes les tables du keyspace courant.
+
+- **Description d'une table** :
+    ```cql
+    DESCRIBE TABLE vroomly.users;
+    ```
+    Cette commande permet de voir les détails de la table `users`.
 
 - **Insertion de données** :
     ```cql
@@ -171,7 +194,7 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     DROP INDEX IF EXISTS name_index;
     ```
 
-Jusqu'ici cela ressemble à du SQL, mais il y a des différences. En effet, comme vu dans le cours, chaque table correspond à une requête. Ainsi, il est important de bien choisir la clé de partition et la clé de clustering pour optimiser les performances de la base de données.
+Comme vu dans le cours, chaque table doit correspondre à une requête précise. Ainsi, il est important de bien choisir la clé de partition et la clé de clustering pour optimiser les performances de la base de données. Aussi, il peut être nécessaire de dupliquer les données pour répondre à différents types de requêtes.
 
 > [!IMPORTANT]
 > Toutes les colonnes qui sont dans la PRIMARY KEY doivent être utilisées dans la clause WHERE de la requête SELECT.
