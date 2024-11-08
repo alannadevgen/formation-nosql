@@ -220,7 +220,7 @@ Voici quelques exemples de commandes CQL pour interagir avec la base de données
 
 - **Création d'un index** :
     ```cql
-    CREATE INDEX IF NOT EXISTS name_index ON users.customers (name);
+    CREATE INDEX IF NOT EXISTS name_index ON library.users (name);
     ```
 
 - **Suppression d'un index** :
