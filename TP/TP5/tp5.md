@@ -411,6 +411,9 @@ GROUP BY timestamp;
 
 > [!WARNING]
 > Une fois le TP terminé, n'oublies pas d'éteindre votre base de données.
+> 
 > Settings > Terminate Database
+> 
 > ![Settings](img/settings.png)
+> puis
 > ![Terminate database](img/terminate-database.png)
