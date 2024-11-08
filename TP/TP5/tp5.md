@@ -409,8 +409,10 @@ GROUP BY timestamp;
 ```
 -->
 
+### Éteindre son cluster
+
 > [!WARNING]
-> Une fois le TP terminé, n'oublies pas d'éteindre votre base de données.
+> Une fois le TP terminé, n'oubliez pas d'éteindre votre base de données.
 > 
 > Settings > Terminate Database
 > 
