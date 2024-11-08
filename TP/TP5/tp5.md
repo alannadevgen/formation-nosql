@@ -357,7 +357,7 @@ CREATE TABLE IF NOT EXISTS nestera.daily_energy_consumption (
 
 11. Insérer dans la table `daily_energy_consumption` les données du fichier `daily_energy_consumption.cql`.
 
-12. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un logement donné.
+12. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour le logement `9a1c44b1-32b3-4747-94c1-b024ef4075e2.
 
 
 <!--
