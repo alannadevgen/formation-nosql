@@ -1,10 +1,3 @@
-CREATE TABLE IF NOT EXISTS nestera.daily_energy_consumption (
-    home_id UUID,
-    date DATE,
-    total_power_usage FLOAT,
-    PRIMARY KEY (home_id, date)
-);
-
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (4e138e7f-2598-4e2d-bba4-cceb190e3737, '2024-10-22', 15.7);
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (f3e35e3f-a2bf-4b53-838d-7370065fb222, '2024-10-21', 13.2);
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (4e138e7f-2598-4e2d-bba4-cceb190e3737, '2024-10-23', 18.5);
@@ -13,7 +6,6 @@ INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) 
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (9a1c44b1-32b3-4747-94c1-b024ef4075e2, '2024-10-22', 19.6);
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (e1a87e3c-69d8-4010-8c1a-3b292a1778d1, '2024-10-21', 10.3);
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (e1a87e3c-69d8-4010-8c1a-3b292a1778d1, '2024-10-22', 12.4);
-
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (9a1c44b1-32b3-4747-94c1-b024ef4075e2, '2023-09-01', 12.0);
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (9a1c44b1-32b3-4747-94c1-b024ef4075e2, '2023-09-02', 11.5);
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (9a1c44b1-32b3-4747-94c1-b024ef4075e2, '2023-09-03', 13.1);
@@ -75,11 +67,3 @@ INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) 
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (9a1c44b1-32b3-4747-94c1-b024ef4075e2, '2023-10-29', 15.1);
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (9a1c44b1-32b3-4747-94c1-b024ef4075e2, '2023-10-30', 12.6);
 INSERT INTO nestera.daily_energy_consumption (home_id, date, total_power_usage) VALUES (9a1c44b1-32b3-4747-94c1-b024ef4075e2, '2023-10-31', 13.8);
-
--- SELECT * FROM nestera.daily_energy_consumption;
-
--- SELECT * FROM nestera.daily_energy_consumption
--- WHERE home_id = 9a1c44b1-32b3-4747-94c1-b024ef4075e2;
-
--- SELECT * FROM nestera.daily_energy_consumption
--- WHERE home_id = f3e35e3f-a2bf-4b53-838d-7370065fb222;

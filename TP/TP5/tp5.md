@@ -101,7 +101,7 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     L'instruction `USE` replace le keyspace courant par celui spécifié dans la requête.
     Ainsi, toutes les requêtes suivantes seront exécutées dans le keyspace `vroomly`.
     Il n'est pas nécessaire de spécifier le keyspace dans les requêtes suivantes.
-    On peut écrire directement `CREATE TABLE users (...)` sans spécifier le keyspace.
+    On peut écrire directement `CREATE TABLE customers (...)` sans spécifier le keyspace.
 
 - **Liste des keyspaces** :
     ```cql
@@ -122,7 +122,7 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
 
 - **Création d’une table** :
     ```cql
-    CREATE TABLE vroomly.users (
+    CREATE TABLE vroomly.customers (
         id UUID PRIMARY KEY,
         name TEXT,
         age INT
@@ -151,42 +151,42 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
 
 - **Description d'une table** :
     ```cql
-    DESCRIBE TABLE vroomly.users;
+    DESCRIBE TABLE vroomly.customers;
     ```
-    Cette commande permet de voir les détails de la table `users`.
+    Cette commande permet de voir les détails de la table `customers`.
 
 - **Insertion de données** :
     ```cql
-    INSERT INTO vroomly.users (id, name, age)
+    INSERT INTO vroomly.customers (id, name, age)
     VALUES (6a6148d1-4a56-4d6a-a610-cdf7b7e3b959, 'Alice', 30);
 
-    INSERT INTO vroomly.users (id, name, age)
+    INSERT INTO vroomly.customers (id, name, age)
     VALUES (uuid(), 'Bob', 23);
     ```
 
 - **Sélection de données** :
     ```cql
-    SELECT * FROM vroomly.users WHERE age > 25;
+    SELECT * FROM vroomly.customers WHERE age > 25;
     ```
 
 - **Mise à jour de données** :
     ```cql
-    UPDATE vroomly.users SET age = 26 WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
+    UPDATE vroomly.customers SET age = 26 WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
     ```
 
 - **Suppression de données** :
     ```cql
-    DELETE FROM vroomly.users WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
+    DELETE FROM vroomly.customers WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
     ```
 
 - **Suppression d'une table** :
     ```cql
-    DROP TABLE IF EXISTS vroomly.users;
+    DROP TABLE IF EXISTS vroomly.customers;
     ```
 
 - **Création d'un index** :
     ```cql
-    CREATE INDEX IF NOT EXISTS name_index ON vroomly.users (name);
+    CREATE INDEX IF NOT EXISTS name_index ON vroomly.customers (name);
     ```
 
 - **Suppression d'un index** :
@@ -340,8 +340,28 @@ UPDATE nestera.devices SET device_name='Super Smart Plug' WHERE device_id=c10459
 ```
 -->
 
+10. Créer une table `daily_energy_consumption` pour stocker la consommation d'énergie agrégée par jour pour chaque maison. La table doit contenir les colonnes suivantes :
+    - `home_id` : UUID, clé primaire
+    - `date` : DATE, clé primaire
+    - `total_power_usage` : FLOAT
 <!--
-10.
+```cql
+CREATE TABLE IF NOT EXISTS nestera.daily_energy_consumption (
+    home_id UUID,
+    date DATE,
+    total_power_usage FLOAT,
+    PRIMARY KEY (home_id, date)
+);
+```
+-->
+
+11. Insérer dans la table `daily_energy_consumption` les données du fichier `daily_energy_consumption.cql`.
+
+12. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un logement donné.
+
+
+<!--
+10. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
 ```cql
 SELECT * FROM nestera.energy_consumption
 WHERE home_id = f3e35e3f-a2bf-4b53-838d-7370065fb222 AND device_id = f0c107b2-82e3-4ed3-97ac-0ceeaaac8196
