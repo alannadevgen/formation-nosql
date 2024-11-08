@@ -1,6 +1,6 @@
-DROP TABLE vroomly.drivers ;
-DROP TABLE vroomly.customers ;
-DROP TABLE vroomly.rides ;
+DROP TABLE IF EXISTS vroomly.drivers ;
+DROP TABLE IF EXISTS vroomly.customers ;
+DROP TABLE IF EXISTS vroomly.rides ;
 
 CREATE TABLE vroomly.customers (
     id UUID PRIMARY KEY,
