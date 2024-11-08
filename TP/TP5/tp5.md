@@ -308,7 +308,7 @@ VALUES (f0c107b2-82e3-4ed3-97ac-0ceeaaac8196, f3e35e3f-a2bf-4b53-838d-7370065fb2
 
 6. Quel est le résultat de la requête suivante ?
 ```cql
-SELECT * FROM energy_consumption WHERE home_id=4e138e7f-2598-4e2d-bba4-cceb190e3737;
+SELECT * FROM nestera.energy_consumption WHERE home_id=4e138e7f-2598-4e2d-bba4-cceb190e3737;
 ```
 Est-elle valide ? Si non, que faire pour corriger cette requête ?
 
