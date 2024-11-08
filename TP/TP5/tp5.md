@@ -121,7 +121,7 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     ```
 
 - **Création d’une table** :
-    __Clé primaire simple__
+    - __Clé primaire simple__
     ```cql
     CREATE TABLE vroomly.customers (
         id UUID PRIMARY KEY,
@@ -131,7 +131,17 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     ```
     Pour plus d'informations sur les types de données supportés par Cassandra, vous pouvez consulter [la documentation](https://cassandra.apache.org/doc/latest/cql/types.html).
 
-    __Clé primaire composite__
+    - __Clé primaire composite__
+    ```cql
+    CREATE TABLE vroomly.rides (
+        driver_id UUID,
+        customer_id UUID,
+        timestamp TIMESTAMP,
+        price FLOAT,
+        PRIMARY KEY (driver_id, customer_id)
+    );
+    ```
+    - __Clé de clustering__
     On peut également définir des clés de clustering pour trier les données dans la table.
     ```cql
     CREATE TABLE vroomly.rides (
@@ -292,10 +302,10 @@ CREATE TABLE IF NOT EXISTS nestera.energy_consumption (
 -->
 5. Insérez les données suivantes dans la table `energy_consumption`.
 
-| home_id                              | device_id                            | timestamp                       | power_usage |
-|--------------------------------------|--------------------------------------|---------------------------------|-------------|
-| 4e138e7f-2598-4e2d-bba4-cceb190e3737 | c1045906-857f-401f-b16e-425f077ad934 | 2023-10-07 12:02:19.976000+0000 | 5.5         |
-| f3e35e3f-a2bf-4b53-838d-7370065fb222 | f0c107b2-82e3-4ed3-97ac-0ceeaaac8196 | 2024-11-02 22:01:26.614000+0000 | 3.2         |
+| home_id                              | device_id                            | timestamp                      | power_usage |
+|--------------------------------------|--------------------------------------|--------------------------------|-------------|
+| 4e138e7f-2598-4e2d-bba4-cceb190e3737 | c1045906-857f-401f-b16e-425f077ad934 | 2023-10-07 12:02:19 | 5.5         |
+| f3e35e3f-a2bf-4b53-838d-7370065fb222 | f0c107b2-82e3-4ed3-97ac-0ceeaaac8196 | 2024-11-02 22:01:26 | 3.2         |
 
 > [!TIP]
 > Vous pouvez utiliser la fonction `toTimestamp(now())` pour insérer la date actuelle.
@@ -315,13 +325,13 @@ SELECT * FROM nestera.energy_consumption WHERE home_id=4e138e7f-2598-4e2d-bba4-c
 Est-elle valide ? Si non, que faire pour corriger cette requête ?
 
 <!--
-Il manque la cle primaire device_id dans la clause WHERE. La requête doit être modifiée comme suit :
+Il manque la clé primaire device_id dans la clause WHERE. La requête doit être modifiée comme suit :
 ```cql
 SELECT * FROM energy_consumption WHERE home_id=4e138e7f-2598-4e2d-bba4-cceb190e3737 AND device_id=c1045906-857f-401f-b16e-425f077ad934;
 ```
 -->
 
-7. Créez un index sur la colonne `device_id` de la table `energy_usage`.
+7. Créez un index sur la colonne `device_id` de la table `energy_consumption`.
 <!--
 ```cql
 CREATE INDEX IF NOT EXISTS device_id_index ON nestera.energy_consumption (device_id);
@@ -360,6 +370,13 @@ CREATE TABLE IF NOT EXISTS nestera.daily_energy_consumption (
 11. Insérer dans la table `daily_energy_consumption` les données du fichier `daily_energy_consumption.cql`.
 
 12. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour le logement `9a1c44b1-32b3-4747-94c1-b024ef4075e2.
+<!--
+```cql
+SELECT * FROM nestera.daily_energy_consumption
+WHERE home_id=9a1c44b1-32b3-4747-94c1-b024ef4075e2
+GROUP BY date;
+```
+-->
 
 
 <!--
