@@ -121,6 +121,7 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     ```
 
 - **Création d’une table** :
+    __Clé primaire simple__
     ```cql
     CREATE TABLE vroomly.customers (
         id UUID PRIMARY KEY,
@@ -130,6 +131,7 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
     ```
     Pour plus d'informations sur les types de données supportés par Cassandra, vous pouvez consulter [la documentation](https://cassandra.apache.org/doc/latest/cql/types.html).
 
+    __Clé primaire composite__
     On peut également définir des clés de clustering pour trier les données dans la table.
     ```cql
     CREATE TABLE vroomly.rides (
