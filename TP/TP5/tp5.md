@@ -78,144 +78,6 @@ Il existe différents concepts dans Cassandra qui correspondent à des concepts 
 | Cluster          | Ensemble de serveurs          |
 | Réplication      | Réplication/Backup            |
 
-## CQL - Cassandra Query Language
-
-CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Cassandra. Bien qu'il ressemble à SQL, il est conçu pour les opérations de base de données distribuées sans prise en charge de certaines fonctionnalités comme les jointures.
-
-### Exemples de commandes en CQL
-
-Patricia DUBOIS, présidente de l'entreprise de VTC `Vroomly`, dispose de données sur les utilisateurs et les courses effectuées. Elle souhaite stocker ces données dans une base de données Cassandra pour les analyser et améliorer son service.
-
-Voici quelques exemples de commandes CQL pour interagir avec cette base de données :
-
-- **Création d'un keyspace** :
-    ```cql
-    CREATE KEYSPACE vroomly
-    WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
-    ```
-  
-- **Changement de keyspace** : 
-    ```cql
-    USE vroomly ;
-    ```
-    L'instruction `USE` replace le keyspace courant par celui spécifié dans la requête.
-    Ainsi, toutes les requêtes suivantes seront exécutées dans le keyspace `vroomly`.
-    Il n'est pas nécessaire de spécifier le keyspace dans les requêtes suivantes.
-    On peut écrire directement `CREATE TABLE customers (...)` sans spécifier le keyspace.
-
-- **Liste des keyspaces** :
-    ```cql
-    DESCRIBE KEYSPACES;
-    ```
-    Cette commande permet de lister tous les keyspaces disponibles dans le cluster.
-
-- **Description d'un keyspace** :
-    ```cql
-    DESCRIBE KEYSPACE vroomly;
-    ```
-    Cette commande permet de voir les détails du keyspace `vroomly`.
-
-- **Suppression d'un keyspace** :
-    ```cql
-    DROP KEYSPACE IF EXISTS vroomly;
-    ```
-
-- **Création d’une table** :
-    - __Clé primaire simple__
-    ```cql
-    CREATE TABLE vroomly.customers (
-        id UUID PRIMARY KEY,
-        name TEXT,
-        age INT
-    );
-    ```
-    Pour plus d'informations sur les types de données supportés par Cassandra, vous pouvez consulter [la documentation](https://cassandra.apache.org/doc/latest/cql/types.html).
-
-    - __Clé primaire composite__
-    ```cql
-    CREATE TABLE vroomly.rides (
-        driver_id UUID,
-        customer_id UUID,
-        timestamp TIMESTAMP,
-        price FLOAT,
-        PRIMARY KEY (driver_id, customer_id)
-    );
-    ```
-    - __Clé de clustering__
-    On peut également définir des clés de clustering pour trier les données dans la table.
-    ```cql
-    CREATE TABLE vroomly.rides (
-        driver_id UUID,
-        customer_id UUID,
-        timestamp TIMESTAMP,
-        price FLOAT,
-        PRIMARY KEY ((driver_id, customer_id), timestamp)
-    ) WITH CLUSTERING ORDER BY (timestamp DESC);
-    ```
-    Ici la clé primaire est composée de `driver_id` et `customer_id`, et la clé de clustering est `timestamp`.
-    On ajoute `WITH CLUSTERING ORDER BY (timestamp DESC)` pour trier les données par ordre décroissant de `timestamp`.
-
-- **Liste des tables** :
-    ```cql
-    DESCRIBE TABLES;
-    ```
-    Cette commande permet de lister toutes les tables du keyspace courant.
-
-- **Description d'une table** :
-    ```cql
-    DESCRIBE TABLE vroomly.customers;
-    ```
-    Cette commande permet de voir les détails de la table `customers`.
-
-- **Insertion de données** :
-    ```cql
-    INSERT INTO vroomly.customers (id, name, age)
-    VALUES (6a6148d1-4a56-4d6a-a610-cdf7b7e3b959, 'Alice', 30);
-
-    INSERT INTO vroomly.customers (id, name, age)
-    VALUES (uuid(), 'Bob', 23);
-    ```
-
-- **Sélection de données** :
-    ```cql
-    SELECT * FROM vroomly.customers WHERE age > 25;
-    ```
-
-- **Mise à jour de données** :
-    ```cql
-    UPDATE vroomly.customers SET age = 26 WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
-    ```
-
-- **Suppression de données** :
-    ```cql
-    DELETE FROM vroomly.customers WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
-    ```
-
-- **Suppression d'une table** :
-    ```cql
-    DROP TABLE IF EXISTS vroomly.customers;
-    ```
-
-- **Création d'un index** :
-    ```cql
-    CREATE INDEX IF NOT EXISTS name_index ON vroomly.customers (name);
-    ```
-
-- **Suppression d'un index** :
-    ```cql
-    DROP INDEX IF EXISTS name_index;
-    ```
-
-Comme vu dans le cours, chaque table doit correspondre à une requête précise. Ainsi, il est important de bien choisir la clé de partition et la clé de clustering pour optimiser les performances de la base de données. Aussi, il peut être nécessaire de dupliquer les données pour répondre à différents types de requêtes.
-
-> [!IMPORTANT]
-> Toutes les colonnes qui sont dans la PRIMARY KEY doivent être utilisées dans la clause WHERE de la requête SELECT.
-> Par exemple, si la clé primaire est composée de `id` et `name`, la requête SELECT doit contenir ces deux colonnes dans la clause WHERE.
-
-Documentation :
-- [Manipulation de données](https://cassandra.apache.org/doc/stable/cassandra/cql/ddl.html) : CREATE, ALTER, DROP (table, keyspace)
-- [Requêtes](https://cassandra.apache.org/doc/stable/cassandra/cql/dml.html) : SELECT, INSERT, UPDATE, DELETE
-
 ## Place à la pratique
 
 Nous allons créer un [compte DataStax](https://astra.datastax.com/signup) afin de pouvoir héberger une base de données Apache Cassandra.
@@ -238,13 +100,158 @@ La création de la base de données peut prendre quelques minutes. Une fois term
 
 Vous pouvez maintenant commencer à interagir avec la base de données en utilisant le langage CQL.
 
-Sur le repository GitHub, vous trouverez un fichier `init.cql` contenant les commandes CQL. Vous pouvez les copier-coller dans la console CQL. Requêtez la base de données pour vérifier que les données ont bien été insérées et vous familiariser avec le CQL.
-
 > [!WARNING]
 > Sur DataStax il n'est pas possible de créer/modifier/supprimer un keyspace via les commandes CQL. Pour cela, vous devrez passer par l'interface web.
 > ![Keyspace](img/create-keyspace.png)
 
+## CQL - Cassandra Query Language
+
+CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Cassandra. Bien qu'il ressemble à SQL, il est conçu pour les opérations de base de données distribuées sans prise en charge de certaines fonctionnalités comme les jointures.
+
+### Exemples de commandes en CQL
+
+
+Voici quelques exemples de commandes CQL pour interagir avec cette base de données :
+
+- **Création d'un keyspace** :
+    ```cql
+    CREATE KEYSPACE library
+    WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
+    ```
+  
+- **Changement de keyspace** : 
+    ```cql
+    USE library ;
+    ```
+    L'instruction `USE` replace le keyspace courant par celui spécifié dans la requête.
+    Ainsi, toutes les requêtes suivantes seront exécutées dans le keyspace `library`.
+    Il n'est pas nécessaire de spécifier le keyspace dans les requêtes suivantes.
+    On peut écrire directement `CREATE TABLE users (...)` sans spécifier le keyspace.
+
+- **Liste des keyspaces** :
+    ```cql
+    DESCRIBE KEYSPACES;
+    ```
+    Cette commande permet de lister tous les keyspaces disponibles dans le cluster.
+
+- **Description d'un keyspace** :
+    ```cql
+    DESCRIBE KEYSPACE library;
+    ```
+    Cette commande permet de voir les détails du keyspace `library`.
+
+- **Suppression d'un keyspace** :
+    ```cql
+    DROP KEYSPACE IF EXISTS library;
+    ```
+
+- **Création d’une table** :
+    - __Clé primaire simple__
+    ```cql
+    CREATE TABLE library.users (
+        id UUID PRIMARY KEY,
+        name TEXT,
+        age INT
+    );
+    ```
+    Pour plus d'informations sur les types de données supportés par Cassandra, vous pouvez consulter [la documentation](https://cassandra.apache.org/doc/latest/cql/types.html).
+
+    - __Clé primaire composite__
+    ```cql
+    CREATE TABLE library.load (
+        loan_id UUID,
+        user_id UUID,
+        timestamp TIMESTAMP,
+        PRIMARY KEY (loan_id, user_id)
+    );
+    ```
+    - __Clé de clustering__
+    On peut également définir des clés de clustering pour trier les données dans la table.
+    ```cql
+    CREATE TABLE vroomly.loan (
+         loan_id UUID,
+        user_id UUID,
+        timestamp TIMESTAMP,
+        PRIMARY KEY ((loan_id, user_id), timestamp)
+    ) WITH CLUSTERING ORDER BY (timestamp DESC);
+    ```
+    Ici la clé primaire est composée de `driver_id` et `customer_id`, et la clé de clustering est `timestamp`.
+    On ajoute `WITH CLUSTERING ORDER BY (timestamp DESC)` pour trier les données par ordre décroissant de `timestamp`.
+
+- **Liste des tables** :
+    ```cql
+    DESCRIBE TABLES;
+    ```
+    Cette commande permet de lister toutes les tables du keyspace courant.
+
+- **Description d'une table** :
+    ```cql
+    DESCRIBE TABLE library.users;
+    ```
+    Cette commande permet de voir les détails de la table `customers`.
+
+- **Insertion de données** :
+    ```cql
+    INSERT INTO library.users (id, name, age)
+    VALUES (6a6148d1-4a56-4d6a-a610-cdf7b7e3b959, 'Alice', 30);
+
+    INSERT INTO library.users (id, name, age)
+    VALUES (uuid(), 'Bob', 23);
+    ```
+
+- **Sélection de données** :
+    ```cql
+    SELECT * FROM library.users WHERE age > 25;
+    ```
+
+- **Mise à jour de données** :
+    ```cql
+    UPDATE library.users SET age = 26 WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
+    ```
+
+- **Suppression de données** :
+    ```cql
+    DELETE FROM library.users WHERE id = 6a6148d1-4a56-4d6a-a610-cdf7b7e3b959;
+    ```
+
+- **Suppression d'une table** :
+    ```cql
+    DROP TABLE IF EXISTS library.users;
+    ```
+
+- **Création d'un index** :
+    ```cql
+    CREATE INDEX IF NOT EXISTS name_index ON users.customers (name);
+    ```
+
+- **Suppression d'un index** :
+    ```cql
+    DROP INDEX IF EXISTS name_index;
+    ```
+
+Comme vu dans le cours, chaque table doit correspondre à une requête précise. Ainsi, il est important de bien choisir la clé de partition et la clé de clustering pour optimiser les performances de la base de données. Aussi, il peut être nécessaire de dupliquer les données pour répondre à différents types de requêtes.
+
+> [!IMPORTANT]
+> Toutes les colonnes qui sont dans la PRIMARY KEY doivent être utilisées dans la clause WHERE de la requête SELECT.
+> Par exemple, si la clé primaire est composée de `id` et `name`, la requête SELECT doit contenir ces deux colonnes dans la clause WHERE.
+
+Documentation :
+- [Manipulation de données](https://cassandra.apache.org/doc/stable/cassandra/cql/ddl.html) : CREATE, ALTER, DROP (table, keyspace)
+- [Requêtes](https://cassandra.apache.org/doc/stable/cassandra/cql/dml.html) : SELECT, INSERT, UPDATE, DELETE
+
+
+
 ## TO-DO
+
+### Vroomly
+
+Patricia DUBOIS, présidente de l'entreprise de VTC `Vroomly`, dispose de données sur les utilisateurs et les courses effectuées. Elle souhaite stocker ces données dans une base de données Cassandra pour les analyser et améliorer son service.
+
+Sur le repository GitHub, vous trouverez un fichier `init.cql` contenant les commandes CQL. Vous pouvez les copier-coller dans la console CQL.
+
+Requêtez la base de données pour vérifier que les données ont bien été insérées et vous familiariser avec le CQL (filtrer les trajets faits par un utilisateur donné, etc).
+
+### Nestera
 
 La start-up Nestera dispose de données de capteurs IoT provenant de divers appareils connectés (thermostats, prises intelligentes, lumières, etc). L'objectif est de suivre l'utilisation de l'énergie en temps réel et de fournir aux propriétaires des informations sur leurs habitudes de consommation d'énergie.
 
@@ -302,8 +309,8 @@ CREATE TABLE IF NOT EXISTS nestera.energy_consumption (
 -->
 5. Insérez les données suivantes dans la table `energy_consumption`.
 
-| home_id                              | device_id                            | timestamp                      | power_usage |
-|--------------------------------------|--------------------------------------|--------------------------------|-------------|
+| home_id                              | device_id                            | timestamp           | power_usage |
+|--------------------------------------|--------------------------------------|---------------------|-------------|
 | 4e138e7f-2598-4e2d-bba4-cceb190e3737 | c1045906-857f-401f-b16e-425f077ad934 | 2023-10-07 12:02:19 | 5.5         |
 | f3e35e3f-a2bf-4b53-838d-7370065fb222 | f0c107b2-82e3-4ed3-97ac-0ceeaaac8196 | 2024-11-02 22:01:26 | 3.2         |
 
@@ -331,10 +338,10 @@ SELECT * FROM energy_consumption WHERE home_id=4e138e7f-2598-4e2d-bba4-cceb190e3
 ```
 -->
 
-7. Créez un index sur la colonne `device_id` de la table `energy_consumption`.
+7. Créez un index sur la colonne `power_usage` de la table `energy_consumption`.
 <!--
 ```cql
-CREATE INDEX IF NOT EXISTS device_id_index ON nestera.energy_consumption (device_id);
+CREATE INDEX IF NOT EXISTS power_usage_index ON nestera.energy_consumption (power_usage);
 ```
 -->
 
