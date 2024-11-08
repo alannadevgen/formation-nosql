@@ -98,20 +98,18 @@ La création de la base de données peut prendre quelques minutes. Une fois term
 
 ![CQL console](img/describe-keyspace.png)
 
-Vous pouvez maintenant commencer à interagir avec la base de données en utilisant le langage CQL.
-
 > [!WARNING]
 > Sur DataStax il n'est pas possible de créer/modifier/supprimer un keyspace via les commandes CQL. Pour cela, vous devrez passer par l'interface web.
 > ![Keyspace](img/create-keyspace.png)
 
-## CQL - Cassandra Query Language
+## Cassandra Query Language
 
 CQL (Cassandra Query Language) est le langage de requête utilisé par Apache Cassandra. Bien qu'il ressemble à SQL, il est conçu pour les opérations de base de données distribuées sans prise en charge de certaines fonctionnalités comme les jointures.
 
 ### Exemples de commandes en CQL
 
 
-Voici quelques exemples de commandes CQL pour interagir avec cette base de données :
+Voici quelques exemples de commandes CQL pour interagir avec la base de données `library` qui contient les données des utilisateurs et des emprunts de livres d'une bibliothèque.
 
 - **Création d'un keyspace** :
     ```cql
@@ -165,8 +163,9 @@ Voici quelques exemples de commandes CQL pour interagir avec cette base de donn�
         PRIMARY KEY (loan_id, user_id)
     );
     ```
+    Ici nous avons une table qui possède deux colonnes comme clé primaire. Cela signifie que la combinaison de `loan_id` et `user_id` doit être unique.
+
     - __Clé de clustering__
-    On peut également définir des clés de clustering pour trier les données dans la table.
     ```cql
     CREATE TABLE vroomly.loan (
          loan_id UUID,
@@ -371,35 +370,47 @@ CREATE TABLE IF NOT EXISTS nestera.daily_energy_consumption (
     total_power_usage FLOAT,
     PRIMARY KEY (home_id, date)
 );
+
+CREATE TABLE IF NOT EXISTS nestera.daily_energy_consumption (
+    home_id UUID,
+    timestamp TIMESTAMP,
+    total_power_usage FLOAT,
+    PRIMARY KEY (home_id, timestamp)
+);
+
+
 ```
 -->
 
 11. Insérer dans la table `daily_energy_consumption` les données du fichier `daily_energy_consumption.cql`.
 
-12. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour le logement `9a1c44b1-32b3-4747-94c1-b024ef4075e2.
+12. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour le logement `9a1c44b1-32b3-4747-94c1-b024ef4075e2`.
 <!--
 ```cql
-SELECT * FROM nestera.daily_energy_consumption
+SELECT * 
+FROM nestera.daily_energy_consumption
 WHERE home_id=9a1c44b1-32b3-4747-94c1-b024ef4075e2
-GROUP BY date;
+ORDER BY timestamp ;
+
+SELECT home_id, avg(total_power_usage) 
+FROM nestera.daily_energy_consumption
+WHERE home_id=9a1c44b1-32b3-4747-94c1-b024ef4075e2
+GROUP BY timestamp;
+
+SELECT home_id, AVG(total_power_usage) 
+FROM nestera.daily_energy_consumption
+WHERE home_id = 9a1c44b1-32b3-4747-94c1-b024ef4075e2;
+GROUP BY timestamp;
+
+
+SELECT home_id, AVG(total_power_usage) 
+FROM nestera.daily_energy_consumption
+GROUP BY timestamp;
 ```
 -->
 
-
-<!--
-10. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
-```cql
-SELECT * FROM nestera.energy_consumption
-WHERE home_id = f3e35e3f-a2bf-4b53-838d-7370065fb222 AND device_id = f0c107b2-82e3-4ed3-97ac-0ceeaaac8196
-ORDER BY timestamp DESC LIMIT 10;
-```
--->
-
-<!--
-1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
-1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par type d'appareil.
-1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par emplacement.
-1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par jour pour un appareil spécifique.
-1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par type d'appareil.
-1. Requêtez la base de données pour obtenir la consommation d'énergie agrégée par emplacement.
--->
+> [!WARNING]
+> Une fois le TP terminé, n'oublies pas d'éteindre votre base de données.
+> Settings > Terminate Database
+> ![Settings](img/settings.png)
+> ![Terminate database](img/terminate-database.png)
