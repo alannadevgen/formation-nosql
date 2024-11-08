@@ -167,8 +167,8 @@ Voici quelques exemples de commandes CQL pour interagir avec la base de données
 
     - __Clé de clustering__
     ```cql
-    CREATE TABLE vroomly.loan (
-         loan_id UUID,
+    CREATE TABLE library.loan (
+        loan_id UUID,
         user_id UUID,
         timestamp TIMESTAMP,
         PRIMARY KEY ((loan_id, user_id), timestamp)
