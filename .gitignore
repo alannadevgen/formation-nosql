@@ -4,8 +4,10 @@
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*.py
 *.py[cod]
 *$py.class
+*.ipynb
 
 # C extensions
 *.so
@@ -173,8 +175,8 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
-# End of https://www.toptal.com/developers/gitignore/api/python
-
+# GeoJSON files
+*.geojson
 
 .DS_Store
 .idea
