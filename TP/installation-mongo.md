@@ -53,15 +53,11 @@ Sur la page suivante nous pouvons choisir le type de Driver, Python dans notre c
 > [!NOTE]  
 > Pensez à copier la *connection string*, cela nous servira ensuite à nous connecter en Python à la base de données que nous venons de créer.
 
-## Interrogation des données MongoDB en Python
+## Installation de MongoDB Compass
 
-Pour requêter les données dans notre base de données nous allons utiliser le package [`pymongo`](https://docs.mongodb.com/drivers/pymongo/), que l'on peut installer via :
+Pour visualiser les données de notre base de données, nous allons installer [MongoDB Compass](https://downloads.mongodb.com/compass/mongodb-compass-1.44.7-win32-x64.exe). Pour cela, cliquez sur le lien et suivez les instructions d'installation.
 
-```bash
-$ pip install pymongo[srv]
-```
-
-## Connexion à Compass
+## Connexion à MongoDB Compass
 
 Maintenant nous allons pouvoir utiliser le cluster créé sur Atlas. Commençons par se connecter à notre instance.
 
@@ -83,6 +79,14 @@ Une fois ceci fait, nous allons créer une base de données appelée `tp` qui co
 Ensuite, il suffit d'importer le fichier JSON qui se situe [ici](https://github.com/alannadevgen/formation-nosql/blob/main/TP/TP1/restaurants.json).
 
 ![Import data](https://github.com/alannadevgen/resources-nosql/blob/main/TP/TP1/img/import-data.png)
+
+## Interrogation des données MongoDB en Python
+
+Pour requêter les données dans notre base de données nous allons utiliser le package [`pymongo`](https://docs.mongodb.com/drivers/pymongo/), que l'on peut installer via :
+
+```bash
+pip install pymongo
+```
 
 Et voilà, vous êtes prêts à requêter les données ! :tada: 
 
