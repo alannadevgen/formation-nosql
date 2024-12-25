@@ -21,9 +21,11 @@ Pour le rendu, il est attendu un rapport ainsi que le code ayant servi à la mig
 
 ### :blue_book: Rapport
 
-Le rapport à pour objectif de présenter la migration : contexte, difficultés recontrées, méthodologie, architecture cible, etc. Tout ce qui vous semble pertinent pour discuter de la migration d'une base de données relationnelle vers une base de données NoSQL.
+Le rapport a pour objectif de présenter la migration : contexte, difficultés recontrées, méthodologie, architecture cible, etc. Tout ce qui vous semble pertinent pour discuter de la migration d'une base de données relationnelle vers une base de données NoSQL.
 
-Le rapport doit faire 5 pages maximum (format PDF). Vous pouvez ajouter des images si vous le souhaitez.
+- Le rapport doit faire entre 5 et 10 pages hors page de garde et sommaire (format PDF).
+- Vous pouvez ajouter des images si vous le souhaitez, elles doivent être pertinentes et référencées dans le texte.
+- Le rapport ne doit pas contenir de code.
 
 Le rapport doit être déposé sur Moodle dans l'onglet **SAÉ - Rapport**.
 
@@ -33,4 +35,15 @@ Pour ce qui est du code, vous devez rendre le code (commenté, propre et clair) 
 
 Il est préférable de rendre un notebook Python (les fichiers Python seront également acceptées).
 
-Le code doit être mis sur un repo GitHub dont vous mettrez le lien sur Moodle **SAÉ - Code**.
+Le code doit être mis sur un repo GitHub dont vous mettrez le lien sur Moodle dans l'onglet **SAÉ - Code**.
+
+## :warning: Attention
+
+Tout rendu ne respectant pas ces consignes ne sera pas corrigé.
+
+## :date: Date de rendu
+
+- **VCOD** : Le rendu est attendu pour le **dimanche 24 novembre 2024 à 20 heures**.
+- **EMS** : Le rendu est attendu pour le **dimanche 22 décembre 2024 à 20 heures**.
+
+Tout rendu après la date limite ne sera pas corrigé et la note de 0 sera attribuée (l'espace de rendu sera fermé).
